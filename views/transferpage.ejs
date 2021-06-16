@@ -1,0 +1,196 @@
+<style>
+    .root {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+    }
+  
+    .subdiv {
+        width: 600px;
+        margin-top: 60px;
+        background-color:#fff;
+        padding: 20px;
+        border-radius: 20px;
+    }
+
+    .gap {
+        padding: 7px;
+    }
+
+    .gap {
+        padding: 2px;
+    }
+
+    .gapb {
+        padding: 30px;
+        margin-top: 10px;
+
+    }
+
+    .aligncenter {
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .coll{
+        color: rgb(43, 177, 43);
+        
+    }
+    .to {
+        background-color: brown;
+    }
+</style>
+<html>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"> </script>
+   <script src="/javascripts/project.js"> </script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+<script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+
+<title>Transfer Money</title>
+
+<body  style="background-color:#f8edeb;">
+    <nav class="navbar is-transparent">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="/bank/home">
+            <p style="display:flex;color:rgb(50, 160, 132); align-items: center; justify-content:center; font-size:30px; font-weight: bold; letter-spacing:3px; font-style: oblique;"> WELCOME</p>
+          </a>
+          <div class="navbar-burger" data-target="navbarExampleTransparentExample">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      
+        <div id="navbarExampleTransparentExample" class="navbar-menu">
+          <div class="navbar-start">
+            <a class="navbar-item" href="/bank/home">
+              HOME
+            </a>
+            <a class="navbar-item" href="/bank/createuser">
+              CREATE USER
+            </a>
+            <div class="navbar-item has-dropdown is-hoverable">
+              <p class="navbar-link" >
+                <span class="coll">MORE</span> 
+              </p>
+              <div class="navbar-dropdown is-boxed">
+               
+                <a class="navbar-item" href="/bank/displayall">
+                <span class="coll">TRANSFER MONEY</span> 
+                </a>
+                <a class="navbar-item" href="/bank/thistory">
+                  TRANSACTION HISTORY
+                </a>
+              
+              </div>
+            </div>
+          </div>
+      
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <div class="field is-grouped">
+                
+                <p style="display:flex;color:rgb(50, 160, 132); align-items: center; justify-content:center; font-size:30px; font-weight: bold; letter-spacing:3px; font-style: oblique;">THE SPARK BANK</p>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+    <div class="root">
+        <div class="subdiv">
+            <div class="row gap to"
+                style="display:flex;color:cornsilk; align-items: center; justify-content:center; font-size:30px; font-weight: bold; letter-spacing:3px;">
+                TRANSFER MONEY
+
+            </div>
+            <form action="/bank/updaterecord">
+                <div class='gapl to'>
+                    <input type='hidden' value='<%=user[0].userid %>' name="uid">
+                    <input type='hidden' value='<%=user[0].name %>' name="uname">
+                    <input type='hidden' value='<%=user[0].balance %>' name="ubalance">
+                    <hr>
+                </div>
+                <div class="row ">
+                    <div class="col">
+                        <div class="field">
+                            <b>Your Name:</b>
+                            <%=user[0].name %>
+
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="field">
+                            <b> Email ID:</b>
+                            <%=user[0].email %>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="row gap ">
+                    <div class="col ">
+                        <div class="field">
+                            <b>Net Balance: </b>
+                            <%=user[0].balance %>
+                        </div>
+                    </div>
+                </div>
+                <div class='gapl to'>
+
+                    <hr>
+                </div>
+                <div class="row gap ">
+
+                    <b>TRANSFER TO:</b>   <div class="field ">
+                        <div class="select is-primary ">
+                            <select required id='to' name="to" style="width: 600px;">
+                                <option value="">Select the Account
+
+                                </option>
+                                <%users.map((item,index)=>{ %>
+
+                                    <option value="<%=users[index].userid %>"><b>Name:</b>
+                                        <%=users[index].name %>  &nbsp; &nbsp;<b>Email ID:</b>
+                                            <%=users[index].email %>
+                                    </option>
+                                    <%})%>
+                            </select>
+                        </div>
+
+
+                    </div>
+                </div>
+                <b>AMOUNT:</b> <div class="row gap ">
+                    &nbsp; &nbsp;<input class="input is-primary"  pattern='[0-9]+' required type="text" name="tamount" id="tamount" style="width: 550px; " placeholder="Enter Amount">
+                </div>
+
+                
+                <input type='hidden' id='tname' value=" " name="tname">
+                <input type='hidden' id='tbalance' value=" " name="tbalance">
+               
+                
+            
+  
+                <div class="col gapb aligncenter">
+                    <button style="width:180" class="button is-success is-outlined" type='submit'>Transfer</button>
+               
+                  
+                </div>
+
+
+
+            </form>
+            
+</body>
+
+</html>
